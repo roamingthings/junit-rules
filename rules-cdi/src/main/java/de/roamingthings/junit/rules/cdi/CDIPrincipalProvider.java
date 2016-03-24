@@ -46,20 +46,24 @@ public class CDIPrincipalProvider implements TestRule {
 
             @Override
             public void evaluate() throws Throwable {
-                final CDIProvider cdiProviderMock = mock(CDIProvider.class);
-                final CDI cdiMock = mock(CDI.class);
-                final Principal testPrincipalMock = mock(Principal.class);
-                when(testPrincipalMock.getName()).thenReturn(TEST_PRINCIPAL_NAME);
+                try {
+                    final CDIProvider cdiProviderMock = mock(CDIProvider.class);
+                    final CDI cdiMock = mock(CDI.class);
+                    final Principal testPrincipalMock = mock(Principal.class);
+                    when(testPrincipalMock.getName()).thenReturn(TEST_PRINCIPAL_NAME);
 
-                final Instance principalInstanceMock = mock(Instance.class);
-                when(principalInstanceMock.isAmbiguous()).thenReturn(false);
-                when(principalInstanceMock.isUnsatisfied()).thenReturn(false);
-                when(principalInstanceMock.get()).thenReturn(testPrincipalMock);
+                    final Instance principalInstanceMock = mock(Instance.class);
+                    when(principalInstanceMock.isAmbiguous()).thenReturn(false);
+                    when(principalInstanceMock.isUnsatisfied()).thenReturn(false);
+                    when(principalInstanceMock.get()).thenReturn(testPrincipalMock);
 
-                when(cdiMock.select(Principal.class)).thenReturn(principalInstanceMock);
+                    when(cdiMock.select(Principal.class)).thenReturn(principalInstanceMock);
 
-                when(cdiProviderMock.getCDI()).thenReturn(cdiMock);
-                CDI.setCDIProvider(cdiProviderMock);
+                    when(cdiProviderMock.getCDI()).thenReturn(cdiMock);
+                    CDI.setCDIProvider(cdiProviderMock);
+                } catch (IllegalStateException e) {
+                    // Ignore this exception since it means that a provider has already been set
+                }
 
                 base.evaluate();
             }
