@@ -143,13 +143,6 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 ###
-### JRebel
+### derby logs
 ###
-
-jrebel.xml
-
-###
-### derby
-###
-
 derby.log
