@@ -146,3 +146,9 @@ gradle-app.setting
 ### derby logs
 ###
 derby.log
+
+###
+### JRebel
+###
+rebel.xml
+jrebel.xml
