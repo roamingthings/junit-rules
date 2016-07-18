@@ -53,8 +53,9 @@ public class EntityManagerProvider implements TestRule {
         return this.tx;
     }
 
-    public void begin() {
+    public EntityManager begin() {
         this.tx.begin();
+        return em;
     }
 
     public void commit() {
