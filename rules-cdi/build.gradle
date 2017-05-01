@@ -28,7 +28,7 @@ sourceSets {
 
 license {
     include "**/*.java"
-    exclude "**/*Test.java"
+    exclude "**/*Test*.java"
 }
 licenseMain.dependsOn licenseFormat
 
