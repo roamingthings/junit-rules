@@ -1,0 +1,11 @@
+task rebuildAll {
+    dependsOn gradle.includedBuilds*.task(':build'), gradle.includedBuilds*.task(':clean')
+}
+
+task buildAll {
+    dependsOn gradle.includedBuilds*.task(':build')
+}
+
+allprojects {
+    group = 'de.roamingthings.junit-rules'
+}

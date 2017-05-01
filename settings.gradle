@@ -1,0 +1,6 @@
+rootProject.name = 'junit-rules'
+
+includeBuild 'rules-cdi'
+includeBuild 'rules-jackson'
+includeBuild 'rules-jaxrs'
+includeBuild 'rules-jpa'
