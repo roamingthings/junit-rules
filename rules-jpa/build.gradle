@@ -14,11 +14,11 @@ repositories {
 }
 
 dependencies {
-    compile 'org.mockito:mockito-all:1.10.19'
     compileOnly 'junit:junit:4.12'
     compileOnly 'javax:javaee-api:7.0'
     testCompile 'org.eclipse.persistence:eclipselink:2.5.2'
     testCompile 'org.apache.derby:derby:10.11.1.1'
+    testCompile 'org.mockito:mockito-core:2.+'
 }
 
 sourceSets {
