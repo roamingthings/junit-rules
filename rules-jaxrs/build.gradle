@@ -1,0 +1,51 @@
+plugins {
+    id "com.github.hierynomus.license" version "0.14.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'junit:junit:4.12'
+    compileOnly 'javax:javaee-api:7.0'
+    testCompile 'org.mockito:mockito-core:2.+'
+    testCompile 'org.glassfish.jersey.core:jersey-client:2.21'
+    testCompile 'org.glassfish:javax.json:1.0.4'
+    testCompile 'org.glassfish.jersey.media:jersey-media-json-processing:2.21'
+}
+
+sourceSets {
+    test {
+        compileClasspath += configurations.compileOnly
+        runtimeClasspath += configurations.compileOnly
+    }
+}
+
+license {
+    include "**/*.java"
+    exclude "**/*Test*.java"
+}
+licenseMain.dependsOn licenseFormat
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
